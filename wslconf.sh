@@ -1,30 +1,16 @@
 #!/bin/bash
 
-# Create cloud-init configuration file
-sudo tee /etc/cloud/cloud.cfg.d/99-custom.cfg > /dev/null <<EOL
-#cloud-config
-packages:
-  - pipx
-  - pdm
-  - lsd
-  - powerline-gitstatus
-users:
-  - default
-EOL
+sudo apt update
+sudo apt install pipx lsd powerline-gitstatus python3 python-is-python3 git -y
 
-# Run cloud-init to apply the configuration
-sudo cloud-init init
-sudo cloud-init modules --mode=config
-sudo cloud-init modules --mode=final
-
-# Configure aliases
+echo '# Configure custom aliases' >> ~/.bashrc
 echo 'alias ll="lsd -l"' >> ~/.bashrc
 echo 'alias la="lsd -a"' >> ~/.bashrc
 echo 'alias gs="git status"' >> ~/.bashrc
 echo 'alias gp="git pull"' >> ~/.bashrc
 echo 'alias gpom="git push origin master"' >> ~/.bashrc
 
-# Configure PATH to include Python bin
+echo '# Configure PATH to include Python bin' >> ~/.bashrc
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 
 # Activate powerline if installed
@@ -47,3 +33,6 @@ pipx install ipython
 pipx inject ipython requests
 
 echo "Configuration complete."
+echo "if you do not have an ssh key generated please run:"
+echo "  ssh-keygen"
+echo 
