@@ -44,14 +44,5 @@ wsl --set-default-version 2
 
 # Install Ubuntu 24.04
 Write-Host "Installing Ubuntu 24.04 from Microsoft store..."
-winget install --id 9NZ3KLHXDJP5 --source msstore
-
-# Verify installation
-Write-Host "Verifying installation..."
-$installedDistros = wsl --list --verbose
-if ($installedDistros -match "Ubuntu-24.04") {
-    Write-Host "Ubuntu 24.04 has been successfully installed on WSL2. Starting..."
-    ubuntu2404.exe install
-} else {
-    Write-Host "There was an issue installing Ubuntu 24.04."
-}
+winget install --id 9NZ3KLHXDJP5 --source msstore --accept-source-agreements --silent --accept-package-agreements
+ubuntu2404.exe install
