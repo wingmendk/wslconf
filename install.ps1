@@ -44,7 +44,7 @@ wsl --set-default-version 2
 
 # Install Ubuntu 24.04
 Write-Host "Installing Ubuntu 24.04 from Microsoft store..."
-winget install --id Canonical.Ubuntu.24.04 --source msstore
+winget install --id 9NZ3KLHXDJP5 --source msstore
 
 # Verify installation
 Write-Host "Verifying installation..."

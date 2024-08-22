@@ -10,7 +10,7 @@ Use the one-liner below in an Admin PowerShell instance.
 You can now run this script:
 
 ```ps
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://github.com/wingmendk/wslconf/blob/main/install.ps1')
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://github.com/wingmendk/wslconf/raw/main/install.ps1')
 ```
 
 The script does the following:
@@ -42,7 +42,7 @@ Click the down arrow in the top of the terminal and select `Ubuntu 24.04`. This 
 Run this command:
 
 ```bash
-curl -sSL https://github.com/wingmendk/wslconf/blob/main/wslconf.sh | bash
+curl -sSL https://github.com/wingmendk/wslconf/raw/main/wslconf.sh | bash
 ```
 
 The script does the following:
