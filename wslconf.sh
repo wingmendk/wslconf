@@ -54,6 +54,10 @@ echo '    . /usr/share/powerline/bindings/bash/powerline.sh'    >> ~/.bashrc
 echo 'fi'                                                       >> ~/.bashrc 
 
 
+#### LOGIN TO SERVICES ####
+# login to az cli
+source ~/.bashrc && az login
+
 # Run ssh-keygen if SSH key not present
 if [ ! -f ~/.ssh/id_rsa ]; then
     echo "SSH key not found, generating a new one..."
@@ -67,21 +71,17 @@ cat ~/.ssh/id_rsa
 echo
 echo "COPY THE PUBLIC KEY ABOVE!"
 echo "Press any key to open Azure DevOps SSH Keys manager"
-while [ true ] ; do
+while true; do
     read -t 3 -n 1
-    if [ $? = 0 ] ; then
-        echo ;
+    if [ $? = 0 ]; then
+        echo "Opening Azure DevOps SSH Keys manager..."
+        # Open the ssh-key add wizard on Azure DevOps
+        source ~/.bashrc && $HOME/msedge.exe "https://dev.azure.com/wingmen/_usersSettings/keys"
+        # FINAL MESSAGE
+        echo  
+        echo "Completed. Restart this session to reload your profile or write this in the terminal:"
+        echo "  source ~/.bashrc"
+        break
     fi
 done
-
-# Open the ssh-key add wizard on Azure DevOps
-source ~/.bashrc && $HOME/msedge.exe "https://dev.azure.com/wingmen/_usersSettings/keys"
-
-# login to az cli
-source ~/.bashrc && az login
-
-# FINAL MESSAGE
-echo
-echo "Completed. Restart this session to reload your profile or write this in the terminal:"
-echo "  source ~/.bashrc
 #EOF
