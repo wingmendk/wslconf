@@ -56,7 +56,7 @@ echo 'fi'                                                       >> ~/.bashrc
 
 #### LOGIN TO SERVICES ####
 # login to az cli
-source ~/.bashrc && az login
+BROWSER='$HOME/msedge.exe' az login
 
 # Run ssh-keygen if SSH key not present
 if [ ! -f ~/.ssh/id_rsa ]; then
