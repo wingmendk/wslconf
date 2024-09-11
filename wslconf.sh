@@ -70,7 +70,7 @@ echo "Press any key to open Azure DevOps SSH Keys manager"
 while [ true ] ; do
     read -t 3 -n 1
     if [ $? = 0 ] ; then
-        exit ;
+        echo ;
     fi
 done
 
