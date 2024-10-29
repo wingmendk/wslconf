@@ -12,7 +12,7 @@ Use the one-liner below in an Admin PowerShell instance - do this:
 3. Click `Terminal (Admin)`  
 
 ```powershell title="Install Ubuntu 24.04, Windows Terminal and Cascadia Code NF"
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://github.com/wingmendk/wslconf/raw/main/install.ps1')
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://dev.azure.com/wingmen/code-hanger/_apis/git/repositories/development-environment-wsl/items?scopePath=install.ps1&api-version=6.0')
 ```
 
 !!! info "What this does:"
@@ -22,11 +22,12 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://github.com/
     3. Configure WSL - Windows Subsystem for Linux is required to run Ubuntu on Windows. The dependencies will be added to windows automatically. Your PC may have to restart.  
     4. Download Ubuntu 24.04 from the Microsoft Store - your dev environment will be on a linux instance and the latest LTS release of Ubuntu has the tools you neeed.  
     5. Run Ubuntu installation - you will be asked for username and password. __Don't forget!__  
+    6. Invokes the configuration script for Ubuntu 24.04 - this will install the necessary packages and configure your terminal.
 
 ## Ubuntu 24.04 configuration
 
-Use the one-liner below in Ubuntu24.04 to configure and pre-install required packages to get you off the ground!
-However, there is a __few short steps before__, so let us configure Terminal first to ensure a good experience.
+The powershell script invokes Ubuntu24.04 to configure and pre-install required packages to get you off the ground!
+However, there is a __few short steps after__, so let us configure Terminal to ensure a good experience.
 
 - Open `Windows Terminal`.
 - Click `Ctrl + ,` to open settings.
@@ -35,18 +36,16 @@ However, there is a __few short steps before__, so let us configure Terminal fir
 - In the left menu click `Defaults`.
 - Make your changes to your own desire but ensure that `Font face` is set to `Cascadia Code NF`.
 
-With this out of the way, let's run the script. Click the __:octicons-chevron-down-24:__ (down arrow) in the top of the terminal and select `Ubuntu 24.04`. This will open a prompt.
-
-```bash title="Install Ubuntu 24.04 packages"
-curl -sSL https://github.com/wingmendk/wslconf/raw/main/wslconf.sh | bash
-```
-
-!!! info "What this does:"
+!!! info "What the wslconf script does:"
     1. Updates packages
-    2. Install lsd, powerline-gitstatus, python, pipx, git, wget, pdm, ipython, cookiecutter and uv/uvx
+    2. Install lsd, powerline-gitstatus, python, git, wget, and uv/uvx
     3. Add aliases to lsd instead of ls
     4. Ensure python binaries on path
     5. Enables powerlines
+    6. Generates a new SSH key to add to Azure DevOps
+
+With this out of the way, click the __:octicons-chevron-down-24:__ (down arrow) in the top of the terminal and select `Ubuntu 24.04`. This will open a prompt.
+We are now ready to install VS Code and the necessary extensions.
 
 ## Install VS Code and Extensions
 

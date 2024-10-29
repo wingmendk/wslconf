@@ -46,3 +46,9 @@ wsl --set-default-version 2
 Write-Host "Installing Ubuntu 24.04 from Microsoft store..."
 winget install --id 9NZ3KLHXDJP5 --source msstore --accept-source-agreements --silent --accept-package-agreements
 ubuntu2404.exe install
+
+# download the wslconf.sh script and execute it in Ubuntu 24.04
+Invoke-WebRequest -Uri "https://dev.azure.com/wingmen/code-hanger/_apis/git/repositories/development-environment-wsl/items?scopePath=wslconf.sh&api-version=6.0" -OutFile "$env:TEMP\wslconf.sh"
+$wslPath = wsl -d Ubuntu-24.04 wslpath -u "'$env:TEMP'"
+wsl -d Ubuntu-24.04 bash -c "$wslpath/wslconf.sh"
+wsl -d Ubuntu-24.04 --cd ~

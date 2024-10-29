@@ -1,17 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #### PACKAGE INSTALL ####
 # Upgrade packages to the latest version
 sudo apt update && sudo apt upgrade -y
 
 # Install helpful packages
-sudo apt install -y pipx lsd powerline-gitstatus python3 python-is-python3 git wget curl apt-transport-https software-properties-common
-
-# Install Azure CLI (az)
-curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-
-# Install Azure DevOps extension to az CLI
-az extension add --name azure-devops
+sudo apt install -y lsd powerline-gitstatus python3 python-is-python3 git wget curl apt-transport-https software-properties-common
 
 # Install uv and uvx
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -53,13 +47,8 @@ echo '    POWERLINE_BASH_SELECT=1'                              >> ~/.bashrc
 echo '    . /usr/share/powerline/bindings/bash/powerline.sh'    >> ~/.bashrc
 echo 'fi'                                                       >> ~/.bashrc 
 
-
-#### LOGIN TO SERVICES ####
-# login to az cli
-BROWSER="$HOME/msedge.exe" az login
-
 # Run ssh-keygen if SSH key not present
-if [ ! -f ~/.ssh/id_rsa ]; then
+if [ ! -f ~/.ssh/id_rsa.pub ]; then
     echo "SSH key not found, generating a new one..."
     ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
 else
@@ -67,7 +56,7 @@ else
 fi
 
 # print ssh public key and ask to copy to clipboard
-cat ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub
 echo
 echo "COPY THE PUBLIC KEY ABOVE!"
 echo "Press any key to open Azure DevOps SSH Keys manager"
@@ -79,9 +68,7 @@ while true; do
         source ~/.bashrc && $HOME/msedge.exe "https://dev.azure.com/wingmen/_usersSettings/keys"
         # FINAL MESSAGE
         echo  
-        echo "Completed. Restart this session to reload your profile or write this in the terminal:"
-        echo "  source ~/.bashrc"
-        break
+        echo "Completed."
     fi
 done
 #EOF
