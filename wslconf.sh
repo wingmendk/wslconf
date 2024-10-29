@@ -13,7 +13,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 #### FILESYSTEM ####
 # create a symlink for msedge to allow opening a browser from WSL2
-ln -s "/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" msedge.exe
+ln -s "/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" $HOME/msedge.exe
 
 # Touch .hushlogin to suppress login message
 touch ~/.hushlogin
@@ -69,6 +69,7 @@ while true; do
         # FINAL MESSAGE
         echo  
         echo "Completed."
+        break
     fi
 done
 #EOF
